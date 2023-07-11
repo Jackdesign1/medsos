@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 
 if (!empty($_SESSION["id"])) {
@@ -56,70 +57,71 @@ if (!empty($_SESSION["id"])) {
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title>Edit Profile</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <style>
-  .edit-profile-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+    .edit-profile-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-  .edit-profile-container h1 {
-    text-align: center;
-  }
+    .edit-profile-container h1 {
+      text-align: center;
+    }
 
-  .edit-profile-container form {
-    margin-top: 20px;
-  }
+    .edit-profile-container form {
+      margin-top: 20px;
+    }
 
-  .edit-profile-container label {
-    display: block;
-    margin-bottom: 5px;
-  }
+    .edit-profile-container label {
+      display: block;
+      margin-bottom: 5px;
+    }
 
-  .edit-profile-container input[type="text"],
-  .edit-profile-container input[type="email"],
-  .edit-profile-container textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
+    .edit-profile-container input[type="text"],
+    .edit-profile-container input[type="email"],
+    .edit-profile-container textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
 
-  .edit-profile-container textarea {
-    height: 100px;
-  }
+    .edit-profile-container textarea {
+      height: 100px;
+    }
 
-  .edit-profile-container button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+    .edit-profile-container button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-  .edit-profile-container button[type="submit"]:hover {
-    background-color: #45a049;
-  }
+    .edit-profile-container button[type="submit"]:hover {
+      background-color: #45a049;
+    }
 
-  #preview_image {
-    display: none;
-    width: 200px;
-    height: auto;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
+    #preview_image {
+      display: none;
+      width: 200px;
+      height: auto;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
   </style>
 </head>
+
 <body>
   <nav class="navbar">
     <div class="navbar-left">
@@ -155,36 +157,36 @@ if (!empty($_SESSION["id"])) {
 
   <div class="edit-profile-container">
     <h1>Edit Profile</h1>
-   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-  <label for="profile_picture">Profile Picture</label>
-  <input type="file" id="profile_picture" name="profile_picture" accept="image/jpeg,image/png">
-  <img id="preview_image" src="#" alt="Preview Image" style="display: none;">
-  <script>
-    // Fungsi untuk menampilkan gambar yang diupload pada form
-    function previewImage() {
-      var fileInput = document.getElementById('profile_picture');
-      var previewImage = document.getElementById('preview_image');
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+      <label for="profile_picture">Profile Picture</label>
+      <input type="file" id="profile_picture" name="profile_picture" accept="image/jpeg,image/png">
+      <img id="preview_image" src="#" alt="Preview Image" style="display: none;">
+      <script>
+        // Fungsi untuk menampilkan gambar yang diupload pada form
+        function previewImage() {
+          var fileInput = document.getElementById('profile_picture');
+          var previewImage = document.getElementById('preview_image');
 
-      // Mengatur event listener ketika gambar dipilih
-      fileInput.addEventListener('change', function() {
-        var file = fileInput.files[0];
-        var reader = new FileReader();
+          // Mengatur event listener ketika gambar dipilih
+          fileInput.addEventListener('change', function() {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
 
-        // Mengatur event listener ketika pembacaan file selesai
-        reader.addEventListener('load', function() {
-          previewImage.src = reader.result;
-          previewImage.style.display = 'block'; // Tampilkan gambar
-        });
+            // Mengatur event listener ketika pembacaan file selesai
+            reader.addEventListener('load', function() {
+              previewImage.src = reader.result;
+              previewImage.style.display = 'block'; // Tampilkan gambar
+            });
 
-        if (file) {
-          reader.readAsDataURL(file); // Membaca file sebagai URL data
+            if (file) {
+              reader.readAsDataURL(file); // Membaca file sebagai URL data
+            }
+          });
         }
-      });
-    }
 
-    // Panggil fungsi previewImage saat halaman selesai dimuat
-    window.addEventListener('DOMContentLoaded', previewImage);
-  </script>
+        // Panggil fungsi previewImage saat halaman selesai dimuat
+        window.addEventListener('DOMContentLoaded', previewImage);
+      </script>
 
 
       <label for="name">Name</label>
@@ -203,6 +205,7 @@ if (!empty($_SESSION["id"])) {
       <button type="submit">Save Changes</button>
     </form>
   </div>
-  
+
 </body>
+
 </html>
