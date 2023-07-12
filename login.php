@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 if (!empty($_SESSION["id"])) {
   header("Location: index.php");
@@ -23,11 +24,13 @@ if (isset($_POST["submit"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title>Login</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
   <div class="container">
     <div class="login-container">
@@ -43,5 +46,5 @@ if (isset($_POST["submit"])) {
     </div>
   </div>
 </body>
-</html>
 
+</html>
